@@ -40,8 +40,21 @@
               </li>
         
             </ul>
-          <a href="" class="btn body-text-color "><i class="ri-user-line"></i>Account</a>
-          <a href="" class="btn body-text-color"><i class="ri-shopping-cart-line"></i>Cart</a>
+          <a href="" class="btn body-text-color "><i class="ri-user-line"></i>
+            Account
+          </a>
+
+
+
+          <a href="cart.html" class="btn btn-outline-secondary me-3 body-text-color position-relative">
+            <i class="ri-shopping-cart-line"></i>
+            Cart
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartLen">
+            
+              <span class="visually-hidden">unread messages</span>
+            </span>
+        
+          </a>
           </div>
           <a class="navbar-brand body-text-color" href="#"><i class="ri-search-line"></i></a>
         </div>
@@ -53,14 +66,14 @@
     <!-- second navbar start -->
     <nav class="navbar sticky-top z-3 bg-white navbar-expand-lg mt-0 border border-lighter py-3 ">
         <div class="container ">
-          <a class="navbar-brand heading   " href="#"><h1 class="display-5 heading fw-bolder">Book<span class="heading fw-lighter body-text-color">Bazzar</span></h1></a>
+          <a class="navbar-brand heading   " href="index.html"><h1 class="display-5 heading fw-bolder">Book<span class="heading fw-lighter body-text-color">Bazzar</span></h1></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav  ms-auto mb-2 mb-lg-0 fs-5 fw-lighter">
                 <li class="nav-item me-2">
-                  <a class="nav-link active" aria-current="page" href="#">HOME</a>
+                  <a class="nav-link active" aria-current="page" href="#hero">HOME</a>
                 </li>
                 <li class="nav-item dropdown me-2">
                           <a class="nav-link dropdown-toggle  body-text-color" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -74,16 +87,16 @@
                           </ul>
                         </li>
                 <li class="nav-item me-2">
-                  <a class="nav-link body-text-color" aria-current="page" href="#">FEATURED</a>
+                  <a class="nav-link body-text-color" aria-current="page" href="#featured">FEATURED</a>
                 </li>
                 <li class="nav-item me-2">
-                  <a class="nav-link body-text-color" aria-current="page" href="#">POPULAR</a>
+                  <a class="nav-link body-text-color" aria-current="page" href="#popular">POPULAR</a>
                 </li>
                 <li class="nav-item me-2">
-                  <a class="nav-link body-text-color" aria-current="page" href="#">OFFER</a>
+                  <a class="nav-link body-text-color" aria-current="page" href="#offer">OFFER</a>
                 </li>
                 <li class="nav-item me-2">
-                  <a class="nav-link body-text-color" aria-current="page" href="#">ARTICFLES</a>
+                  <a class="nav-link body-text-color" aria-current="page" href="#article">ARTICLES</a>
                 </li>
             
               </ul>
@@ -93,7 +106,7 @@
     <!-- second navbar end -->
 
     <!-- hero section start -->
-     <section class="overflow-x-hidden">
+     <section class="overflow-x-hidden" id="hero">
         <div class="container  my-3 ">
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
@@ -207,7 +220,7 @@
 
 
     <!-- featured start  -->
-     <section class="overflow-x-hidden">
+     <section class="overflow-x-hidden" id="featured">
         <div class="container my-5 body-text-color">
             <div class="box pt-5 text-center">
                 <p class="">SOME QUALITY ITEMS</p>
@@ -242,7 +255,7 @@
 
     <!-- best selling books start -->
 
-     <section class="overflow-x-hidden">
+     <section class="overflow-x-hidden" >
       <div class="container-fluid feature-bg py-5   my-5">
         <div class="container ">
           <div class="row row-cols-lg-2 row-cols-md-2 row-cols-sm-1 row-cols-1 g-5  d-flex justify-content-center align-items-center " id="best_selling">
@@ -257,7 +270,7 @@
 
     <!-- popular books start -->
 
-     <section class="overflow-x-hidden">
+     <section class="overflow-x-hidden" id="popular">
       <div class="container my-5 body-text-color py-5">
         <div class="box pt-5 text-center">
           <p class="">SOME QUALITY ITEMS</p>
@@ -372,7 +385,7 @@
 
     <!-- book offer start -->
 
-    <section class=" my-5 pt-5 pb-5 overflow-x-hidden" >
+    <section class=" my-5 pt-5 pb-5 overflow-x-hidden" id="offer" >
       <div class="container-fluid  feature-bg">
         <div class="box pt-5 mt-5 text-center">
           <h6 class="">GRAB YOUR OPPURTINITY</h6>
@@ -411,7 +424,7 @@
 
 
     <!-- ARTICLE START -->
-     <section class="overflow-x-hidden">
+     <section class="overflow-x-hidden" id="article">
       <div class="container mt-3 mb-5 body-text-color">
         <div class="box pt-5 text-center">
           <p class="">READ OUR ARTICLES</p>
@@ -617,6 +630,7 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <script src="js/script.js"></script>
+<script src="js/cart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 </html>

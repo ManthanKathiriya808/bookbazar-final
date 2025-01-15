@@ -4,6 +4,7 @@ let featured_books = document.getElementById("featured_books")
 let best_selling = document.getElementById("best_selling")
 let all_geners = document.getElementById("all_geners")
 let offer_books =document.getElementById("offer_books")
+
 //feature books start
 
 window.onload= showData(data);
@@ -14,9 +15,72 @@ window.onload= offerBooks(data)
 
 
 
+function setcartData(cd){
+  localStorage.setItem("cartData",JSON.stringify(cd))
+}
+cartData= JSON.parse(localStorage.getItem("cartData")) || []
 
-function showData(data){
+function checkData(id){
+  let cartData= JSON.parse(localStorage.getItem("cartData")) || []
+
+  cartData = cartData.filter((ele) => ele.id == id)
+
+  return !cartData[0]
+}
+
+function checkQuentity(id){
+  let cartData= JSON.parse(localStorage.getItem("cartData")) || []
+
+  let cData = cartData.filter((ele) => ele.id == id)
+
+  return cData[0].quantity
+  
+}
+
+
+
+
+function inCount(id){
+  cartData = cartData.map((ele)=>{
+      if(ele.id==id){
+          ele.quantity+=1
+      }
+      return ele
+  })
+
+  setcartData(cartData)
+  showData(data)
+  showCart(cartData)
+bestSeller(data)
+offerBooks(data)
+allGeners(data)
+}
+function decCount(id){
+  cartData =cartData.map((ele) =>{
+    if(ele.id == id){
+      if(ele.quantity > 1){
+        ele.quantity -= 1;
+      }
+      else{
+        return ele =null
+      }
+    }
+    return ele
+  }).filter((ele) => ele!=null)
+
+  setcartData(cartData)
+  showData(data)
+  bestSeller(data)
+  offerBooks(data)
+  allGeners(data)
+  showCart(cartData)
+ 
+
+}
+
   featured_books = document.getElementById("featured_books")
+function showData(data){
+
     featured_books.innerHTML= ""
 
     data.filter((ele) => ele.category == "featured").map((ele) => {
@@ -33,9 +97,24 @@ function showData(data){
                             <div class="card-body text-center">
                               <h4 class="card-title heading accent-clr ">${ele.title}</h4>
                               <h5 class="card-text body-text-color pt-3">${ele.author}</h5>
-                              <h5 class="card-text accent-clr">INR. ${ele.price}</h5>
-                              <a href="#" >
-<button class="cart-btn mt-3 w-100">
+                              <h5 class="card-text accent-clr">&#x20b9; ${ele.price}</h5>
+                              
+                              ${!checkData(ele.id) ? `
+                                      <div class="btn-group mt-3 w-100" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-dark btn-sm"  onclick="inCount(${ele.id})">
+                                  <i class="ri-add-fill  "></i></button>
+                                <button type="button" class="btn btn-outline-dark disabled btn-sm">
+                                  ${checkQuentity(ele.id)}
+                                  </button>
+                                <button type="button" class="btn btn-danger btn-sm" onclick="decCount(${ele.id})"><i class="ri-subtract-fill"  ></i></button>
+                              </div>
+                          
+                                ` :
+                              
+                              `
+                              
+                            
+                            <button class="cart-btn mt-3 w-100" onclick="addCart(${ele.id})">
   <div class="default-btn">
     <svg
       viewBox="0 0 24 24"
@@ -58,10 +137,14 @@ function showData(data){
   </div>
   <div class="hover-btn text-center">
     
-    <span>INR. ${ele.price}</span>
+    <span>&#x20b9; ${ele.price}</span>
   </div>
 </button>
-</a>
+                            
+                              `}
+                            
+
+
                             </div>
                           </div>
                     </div>
@@ -104,11 +187,11 @@ function bestSeller(data){
                 <p class="fs-5 fw-lighter">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac.</p>
               </div>
               <div class="pricew">
-                <h5 class="accent-clr fw-medium my-3 ">INR. ${ele.price}</h5>
+                <h5 class="accent-clr fw-medium my-3 ">&#x20b9; ${ele.price}</h5>
               </div>
             
               <div class="shop-now">
-                <h5 class="fw-bolder text-black  mt-4 text-start">shop It Now<i class="ri-arrow-right-line"></i></h5>
+                <h5 class="fw-bolder btn text-black fs-5  mt-4 text-start" onclick="addCart(${ele.id})">shop It Now<i class="ri-arrow-right-line"></i></h5>
               </div>
             </div>
     
@@ -164,35 +247,51 @@ function adventureData(){
                           <div class="card-body text-center">
                             <h4 class="card-title heading accent-clr ">${ele.title}</h4>
                             <h5 class="card-text body-text-color pt-3">${ele.author}</h5>
-                            <h5 class="card-text accent-clr">INR. ${ele.price}</h5>
-                            <a href="#" >
-<button class="cart-btn mt-3 w-100">
-<div class="default-btn">
-  <svg
-    viewBox="0 0 24 24"
-    width="20"
-    height="20"
-    stroke="#ffffff"
-    stroke-width="2"
-    fill="none"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    class="cart-icon"
-  >
-    <circle cx="9" cy="21" r="1"></circle>
-    <circle cx="20" cy="21" r="1"></circle>
-    <path
-      d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
-    ></path>
-  </svg>
-  <span>Add to Cart</span>
-</div>
-<div class="hover-btn text-center">
-  
-  <span>INR. ${ele.price}</span>
-</div>
+                            <h5 class="card-text accent-clr">&#x20b9; ${ele.price}</h5>
+                            
+                             ${!checkData(ele.id) ? `
+                                      <div class="btn-group mt-3 w-100" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-dark btn-sm"  onclick="inCount(${ele.id})">
+                                  <i class="ri-add-fill  "></i></button>
+                                <button type="button" class="btn btn-outline-dark disabled btn-sm">
+                                  ${checkQuentity(ele.id)}
+                                  </button>
+                                <button type="button" class="btn btn-danger btn-sm" onclick="decCount(${ele.id})"><i class="ri-subtract-fill"  ></i></button>
+                              </div>
+                          
+                                ` :
+                              
+                              `
+                              
+                            
+                            <button class="cart-btn mt-3 w-100" onclick="addCart(${ele.id})">
+  <div class="default-btn">
+    <svg
+      viewBox="0 0 24 24"
+      width="20"
+      height="20"
+      stroke="#ffffff"
+      stroke-width="2"
+      fill="none"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="cart-icon"
+    >
+      <circle cx="9" cy="21" r="1"></circle>
+      <circle cx="20" cy="21" r="1"></circle>
+      <path
+        d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+      ></path>
+    </svg>
+    <span>Add to Cart</span>
+  </div>
+  <div class="hover-btn text-center">
+    
+    <span>&#x20b9; ${ele.price}</span>
+  </div>
 </button>
-</a>
+                            
+                              `}
                           </div>
                         </div>
                   </div>
@@ -222,9 +321,24 @@ function offerBooks(data) {
                             <div class="card-body text-center">
                               <h4 class="card-title heading accent-clr ">${ele.title}</h4>
                               <h5 class="card-text body-text-color pt-3">${ele.author}</h5>
-                              <h5 class="card-text accent-clr">  <span class="fs-6 body-text-color"><s>INR.999 </s></span> INR. ${ele.price}</h5>
-                              <a href="#" >
-<button class="cart-btn mt-3 w-100">
+                              <h5 class="card-text accent-clr">  <span class="fs-6 body-text-color"><s>&#x20b9;999 </s></span> &#x20b9; ${ele.price}</h5>
+                           
+                             ${!checkData(ele.id) ? `
+                                      <div class="btn-group mt-3 w-100" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-dark btn-sm"  onclick="inCount(${ele.id})">
+                                  <i class="ri-add-fill  "></i></button>
+                                <button type="button" class="btn btn-outline-dark disabled btn-sm">
+                                  ${checkQuentity(ele.id)}
+                                  </button>
+                                <button type="button" class="btn btn-danger btn-sm" onclick="decCount(${ele.id})"><i class="ri-subtract-fill"  ></i></button>
+                              </div>
+                          
+                                ` :
+                              
+                              `
+                              
+                            
+                            <button class="cart-btn mt-3 h-100 w-100" onclick="addCart(${ele.id})">
   <div class="default-btn">
     <svg
       viewBox="0 0 24 24"
@@ -246,11 +360,12 @@ function offerBooks(data) {
     <span>Add to Cart</span>
   </div>
   <div class="hover-btn text-center">
-  
-    <span>INR. ${ele.price}</span>
+    
+    <span>&#x20b9; ${ele.price}</span>
   </div>
 </button>
-</a>
+                            
+                              `}
                             </div>
                           </div>
                     </div>
@@ -271,3 +386,26 @@ var swiper = new Swiper(".mySwiper", {
 
 
 // slider end
+cartData = JSON.parse(localStorage.getItem("cartData")) || []
+
+function addCart(id){
+  let addCartData = data.filter((ele) => ele.id == id).map((ele)=>{
+      if(ele.id == id){
+          ele.quantity = 1
+      }
+      return ele
+  })
+  cartData = [...cartData, ...addCartData]
+
+
+  setcartData(cartData)
+
+  document.getElementById("cartLen").innerHTML = cartData.length
+  showData(data)
+  bestSeller(data)
+  offerBooks(data)
+  allGeners(data)
+}
+
+
+document.getElementById("cartLen").innerHTML = cartData.length
