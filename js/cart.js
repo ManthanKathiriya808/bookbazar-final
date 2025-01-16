@@ -59,7 +59,7 @@ function deleCartData(id){
 function showCart(cartData){
     let cart = document.getElementById("cart")
     cart.innerHTML =""
-
+    document.getElementById("cartLen").innerHTML = cartData.length
     cartData.map((ele) => {
 
         cart.innerHTML += `
