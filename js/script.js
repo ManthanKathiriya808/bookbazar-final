@@ -17,6 +17,7 @@ window.onload= authData()
 
 
 
+
 function setcartData(cd){
   localStorage.setItem("cartData",JSON.stringify(cd))
 }
@@ -55,6 +56,8 @@ function inCount(id){
 bestSeller(data)
 offerBooks(data)
 allGeners(data)
+
+
 }
 function decCount(id){
   cartData =cartData.map((ele) =>{
@@ -241,7 +244,7 @@ function adventureData(){
             <div class="col">
                       <div class="" >
                 <div class="box light-text-color mb-4 p-5">
-                <img src="${ele.image}" class="w-100 img-fluid" alt="${ele.title}">
+                <img src="${ele.image}" class=" img-fluid" alt="${ele.title}">
                 </div>
 
                           
@@ -409,6 +412,7 @@ function addCart(id){
   bestSeller(data)
   offerBooks(data)
   allGeners(data)
+
   }
 
   else{
@@ -488,3 +492,8 @@ auth = document.getElementById("auth")
 
 }
 // auth end
+
+
+// aos start 
+
+// aos end
