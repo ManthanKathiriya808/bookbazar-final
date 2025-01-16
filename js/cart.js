@@ -1,9 +1,9 @@
 
 
-
 let cartData = JSON.parse(localStorage.getItem("cartData")) || []
 window.onload= showCart(cartData);
 window.onload= showTotal();
+window.onload = authData()
 
 
 

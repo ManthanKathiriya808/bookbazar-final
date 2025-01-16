@@ -1,5 +1,4 @@
 
-
 document.getElementById("cartLen").innerHTML = cartData.length
 
 let promo = document.getElementById("promo")
@@ -9,6 +8,7 @@ window.onload = showPromo(cartData)
 window.onload= promoTotals();
 cartData = JSON.parse(localStorage.getItem("cartData")) || []
 window.onload= showCart(cartData);
+window.onload = authData()
 
 
 
