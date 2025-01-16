@@ -23,10 +23,7 @@ function inCount(id){
 
     setcartData(cartData)
     showCart(cartData)
-    showData(data)
-  bestSeller(data)
-  offerBooks(data)
-  allGeners(data)
+
 }
 function decCount(id){
     cartData =cartData.map((ele) =>{
@@ -43,10 +40,7 @@ function decCount(id){
   
     setcartData(cartData)
     showCart(cartData)
-    showData(data)
-    bestSeller(data)
-    offerBooks(data)
-    allGeners(data)
+
    
 
   }

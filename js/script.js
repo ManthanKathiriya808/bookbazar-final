@@ -4,6 +4,7 @@ let featured_books = document.getElementById("featured_books")
 let best_selling = document.getElementById("best_selling")
 let all_geners = document.getElementById("all_geners")
 let offer_books =document.getElementById("offer_books")
+let profile =document.getElementById("profile")
 
 //feature books start
 
@@ -50,7 +51,7 @@ function inCount(id){
 
   setcartData(cartData)
   showData(data)
-  showCart(cartData)
+
 bestSeller(data)
 offerBooks(data)
 allGeners(data)
@@ -73,7 +74,7 @@ function decCount(id){
   bestSeller(data)
   offerBooks(data)
   allGeners(data)
-  showCart(cartData)
+
  
 
 }
@@ -409,3 +410,19 @@ function addCart(id){
 
 
 document.getElementById("cartLen").innerHTML = cartData.length
+
+
+
+function showProflie(activeUser){
+  profile.innerHTML = ""
+
+  activeUser.map((ele) => {
+    profile.innerHTML += `
+    <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+
+    `
+  })
+  
+}
